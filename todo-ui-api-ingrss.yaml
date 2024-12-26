@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: todo-ui-api-ingress
+  labels:
+    name: todo-ui-api-ingress
+spec:
+  rules:
+  - host: todo.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: /ui
+        backend:
+          service: 
+            name: todo-ui-service
+            port: 
+              number: 3001
+
+  - host: todo.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: /api
+        backend:
+          service: 
+            name: todo-api-service
+            port: 
+              number: 8080

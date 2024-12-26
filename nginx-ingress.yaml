@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  labels:
+    name: nginx-ingress
+spec:
+  tls:
+    - secretName: nginx-demo-com-tls
+      hosts:
+        - "nginx-demo.com"
+
+       
+  rules:
+  - host: nginx-demo.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service: 
+            name: nginx-service
+            port: 
+              number: 8082
